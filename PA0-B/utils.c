@@ -20,6 +20,16 @@ int open_file(char* fname, FILE** input) {
 // The value of return is the number of tokens.
 int parse_str_to_list(const char* str, char** token_list) {
     /* Fill this function */
+	int number=0;
+	char delimit[]="/\n";
+	char*ptr=strtok((char*)str,delimit);
+	while(ptr!=NULL)
+	{
+		token_list[number]=(char*)malloc(sizeof(char)*(strlen(ptr)+1));
+                strcpy(token_list[number++],ptr);
+		ptr=strtok(NULL,delimit);
+	}
+	return number;
 }
 
 void free_token_list(char** token_list, int num_token) {
@@ -31,3 +41,4 @@ void free_token_list(char** token_list, int num_token) {
 
     free(token_list);
 }
+
